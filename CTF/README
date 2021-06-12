@@ -1,0 +1,5 @@
+This is a relatively simple (but fun!) capture the flag game using pygame. It is by no means a finished product, as the code could use a lot of cleaning up, especially in replacing the over-use of "status" variables with class attributes. Also comments need to be added, and more features for the game are intended in the near future.
+
+Object is fairly straight-forward. The left, yellow ship uses the WASD keys to navigate, while the right red ship uses the normal arrow keys. In case you were wondering, the two flags represented are the state flags of NJ (yellow) and KY (blue).
+
+Enjoy! :U
