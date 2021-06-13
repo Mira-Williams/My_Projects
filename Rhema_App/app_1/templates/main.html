@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script
+        defer
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+    </script>
+    <script defer src="{% static 'script.js' %}"></script>
+</head>
+<body>
+    <div class='container p-1'>
+
+        <img src="static/RA_logo.png" alt="Rhema App logo"><br><br>   
+
+        <h4 id="filter_title">Filter Search</h4>
+        <form action="/choose_book" method='post'>
+            {% csrf_token %}
+
+            <label for="Whole_Bible" style='margin-right: 54px;'> Whole Bible</label>
+            <input type="radio" id="Whole_Bible" name="filter" value='whole' checked="checked"><br>
+
+            <label for="Old_Test" style='margin-right: 34px;'> Old Testament</label>
+            <input type="radio" id="Old_Test" name="filter" value='OT'><br>
+
+            <label for="New_Test" style='margin-right: 27px;'> New Testament</label>
+            <input type="radio" id="New_Test" name="filter" value='NT'><br>
+
+            <label for="Gospels" style='margin-right: 81px;'> Gospels</label>
+            <input type="radio" id="Gospels" name="filter" value='gosp'><br>
+
+            <label for="Pentateuch" style='margin-right: 57px;'> Pentateuch</label>
+            <input type="radio" id="Pentateuch" name="filter" value='pent'><br>
+
+            
+            <label for="book_ot">Specific Book (OT):</label>
+
+            <select name="book_ot" id="book_ot">
+            <option value=""></option>
+            <option value="Genesis">Genesis</option>
+            <option value="Exodus">Exodus</option>
+            <option value="Leviticus">Leviticus</option>
+            <option value="Numbers">Numbers</option>
+            <option value="Deuteronomy">Deuteronomy</option>
+            <option value="Joshua">Joshua</option>
+            <option value="Judges">Judges</option>
+            <option value="Ruth">Ruth</option>
+            <option value="1 Samuel">1 Samuel</option>
+            <option value="2 Samuel">2 Samuel</option>
+            <option value="1 Kings">1 Kings</option>
+            <option value="2 Kings">2 Kings</option>
+            <option value="1 Chronicles">1 Chronicles</option>
+            <option value="2 Chronicles">2 Chronicles</option>
+            <option value="Ezra">Ezra</option>
+            <option value="Nehemiah">Nehemiah</option>
+            <option value="Esther">Esther</option>
+            <option value="Job">Job</option>
+            <option value="Psalms">Psalms</option>
+            <option value="Proverbs">Proverbs</option>
+            <option value="Ecclesiastes">Ecclesiastes</option>
+            <option value="Song of Solomon">Song of Solomon</option>
+            <option value="Isaiah">Isaiah</option>
+            <option value="Jeremiah">Jeremiah</option>
+            <option value="Lamentations">Lamentations</option>
+            <option value="Ezekiel">Ezekiel</option>
+            <option value="Daniel">Daniel</option>
+            <option value="Hosea">Hosea</option>
+            <option value="Joel">Joel</option>
+            <option value="Amos">Amos</option>
+            <option value="Obadiah">Obadiah</option>
+            <option value="Jonah">Jonah</option>
+            <option value="Micah">Micah</option>
+            <option value="Nahum">Nahum</option>
+            <option value="Habakkuk">Habakkuk</option>
+            <option value="Zephaniah">Zephaniah</option>
+            <option value="Haggai">Haggai</option>
+            <option value="Zechariah">Zechariah</option>
+            <option value="Malachi">Malachi</option>
+            </select><br>
+
+            <label for="book_nt">Specific Book (NT):</label>
+            <select name="book_nt" id="book_nt" style='width: 147px;'>
+            <option value=""></option>
+            <option value="Matthew">Matthew</option>
+            <option value="Mark">Mark</option>
+            <option value="Luke">Luke</option>
+            <option value="John">John</option>
+            <option value="Acts">Acts</option>
+            <option value="Romans">Romans</option>
+            <option value="1 Corinthians">1 Corinthians</option>
+            <option value="2 Corinthians">2 Corinthians</option>
+            <option value="Galatians">Galatians</option>
+            <option value="Ephesians">Ephesians</option>
+            <option value="Philippians">Philippians</option>
+            <option value="Colossians">Colossians</option>
+            <option value="1 Thessalonians">1 Thessalonians</option>
+            <option value="2 Thessalonians">2 Thessalonians</option>
+            <option value="1 Timothy">1 Timothy</option>
+            <option value="2 Timothy">2 Timothy</option>
+            <option value="Titus">Titus</option>
+            <option value="Philemon">Philemon</option>
+            <option value="Hebrews">Hebrews</option>
+            <option value="James">James</option>
+            <option value="1 Peter">1 Peter</option>
+            <option value="2 Peter">2 Peter</option>
+            <option value="1 John">1 John</option>
+            <option value="2 John">2 John</option>
+            <option value="3 John">3 John</option>
+            <option value="Jude">Jude</option>
+            <option value="Revelations">Revelations</option>
+            </select>
+
+            <!-- submit form button used by jquery -->
+            <button type='submit' id='form_sub' style="visibility: hidden;"></button>
+        </form><br>
+
+        <button id='start' class='btn btn-primary mr-1'>Start!</button>
+        <button id='stop' class='btn btn-primary mr-1'>Stop</button>
+        <button id='clear' class='btn btn-primary mr-1'>Clear</button><br>
+        <!-- used to generate link -->
+        <button id='get_link' class='btn btn-primary' style='visibility: hidden;'></button><br>
+
+        <!-- divs used by jquery to insert html of search results -->
+        <h4 style='margin-top: -10px;' id='book_insert' class='html_insert'>&nbsp;</h4> 
+        <h4 id='chapter_insert' class='html_insert'>&nbsp;</h4><!--
+        --><h4 id='verse_insert' class='html_insert'>&nbsp;</h4><br><br>
+        <div id='link_insert' style="margin-top: -10px;">&nbsp;</div><br>
+
+        <!-- used by jquery in 'slot machine style' action -->
+        <a id = 'choose_chapter' href="/choose_chapter" style='visibility: hidden;'></a>
+        <a id = 'choose_verse' href="/choose_verse" style='visibility: hidden;'></a>
+
+    </div>
+</body>
+</html>

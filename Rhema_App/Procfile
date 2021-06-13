@@ -1,0 +1,1 @@
+web: gunicorn  Rhema_app_4.wsgi --log-file - 
