@@ -86,7 +86,8 @@ def nameGenerator(name_length, num_names):
                     letter_3 = random.choices(list_consonants, weights=weight_list_cons, k=1)
                     letter_3 = letter_3[0]
                     name += letter_3
-            letter_count += 1    
+            letter_count += 1
+        name = name.capitalize() 
         list_names.append(name)
 
     for i in range(len(list_names)):
